@@ -1,4 +1,7 @@
+
 import 'package:flutter/material.dart';
+
+import '../widgets/sideMenu_navigator_widget.dart';
 
 
 class Home extends StatelessWidget {
@@ -6,12 +9,10 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          
-        ],
-      ),
+    return const Scaffold(
+      body: MyHomePage(),
     );
   }
 }
+
+
