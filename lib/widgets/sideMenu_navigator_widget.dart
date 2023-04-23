@@ -1,9 +1,9 @@
 
-// ignore_for_file: library_private_types_in_public_api
-
+// ignore_for_file: library_private_types_in_public_api, unused_field
 import 'package:flix_cine/widgets/search_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:shrink_sidemenu/shrink_sidemenu.dart';
+
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -18,8 +18,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   final GlobalKey<SideMenuState> _sideMenuKey = GlobalKey<SideMenuState>();
   final GlobalKey<SideMenuState> _endSideMenuKey = GlobalKey<SideMenuState>();
-
-  
 
   toggleMenu([bool end = false]) {
     if (end) {
@@ -37,6 +35,34 @@ class _MyHomePageState extends State<MyHomePage> {
         state0.openSideMenu();
       }
     }
+  }
+
+  int _selectedIndex = 0;
+  static const TextStyle optionStyle =
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  static const List<Widget> _widgetOptions = <Widget>[
+    Text(
+      'Index 0: Home',
+      style: optionStyle,
+    ),
+    Text(
+      'Index 1: Business',
+      style: optionStyle,
+    ),
+    Text(
+      'Index 2: School',
+      style: optionStyle,
+    ),
+    Text(
+      'Index 3: Settings',
+      style: optionStyle,
+    ),
+  ];
+    
+    void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
   }
 
   @override
@@ -64,6 +90,34 @@ class _MyHomePageState extends State<MyHomePage> {
         child: IgnorePointer(
           ignoring: isOpened,
           child: Scaffold(
+            backgroundColor: const Color.fromARGB(255, 29, 29, 29),
+            bottomNavigationBar: BottomNavigationBar(    
+                items: const <BottomNavigationBarItem>[
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.home),
+                    label: 'Home',
+                    backgroundColor: Color.fromARGB(255, 53, 53, 53),
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.rocket),
+                    label: 'Lançamentos',
+                    backgroundColor: Color.fromARGB(255, 53, 53, 53),
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.favorite),
+                    label: 'Favoritos',
+                    backgroundColor: Color.fromARGB(255, 53, 53, 53),
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.calendar_month),
+                    label: 'Calendário',
+                    backgroundColor: Color.fromARGB(255, 53, 53, 53),
+                  ),
+                ],
+                currentIndex: _selectedIndex,
+                selectedItemColor: Colors.purple,
+                onTap: _onItemTapped,
+              ),
             body: Column(
               children: [
                     Padding(
@@ -75,7 +129,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         const Search(),
 
                         IconButton(onPressed:  () => toggleMenu(true),
-                        icon: const Icon(Icons.menu, size: 32.0,),
+                        icon: const Icon(Icons.menu, size: 32.0, color: Colors.white,),
                       ),
                     ],
                   ),
@@ -87,6 +141,8 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
+
+  
 
   Widget buildMenu() {
     return SingleChildScrollView(
@@ -125,17 +181,6 @@ class _MyHomePageState extends State<MyHomePage> {
           ListTile(
             onTap: () {},
             leading:
-                const Icon(Icons.star_border, size: 27.0, color: Colors.white),
-            title: const Text("Favoritos", style: TextStyle(
-              fontSize: 18.0
-            ),),
-            textColor: Colors.white,
-            dense: true,
-            // padding: EdgeInsets.zero,
-          ),
-          ListTile(
-            onTap: () {},
-            leading:
                 const Icon(Icons.settings, size: 27.0, color: Colors.white),
             title: const Text("Configurações", style: TextStyle(
               fontSize: 18.0
@@ -149,6 +194,19 @@ class _MyHomePageState extends State<MyHomePage> {
             leading: const Icon(Icons.insert_emoticon,
                 size: 27.0, color: Colors.white),
             title: const Text("Sobre nós", style: TextStyle(
+              fontSize: 18.0
+            ),),
+            textColor: Colors.white,
+            dense: true,
+            // padding: EdgeInsets.zero,
+          ),
+           ListTile(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            leading: const Icon(Icons.arrow_back,
+                size: 27.0, color: Colors.white),
+            title: const Text("Sair", style: TextStyle(
               fontSize: 18.0
             ),),
             textColor: Colors.white,
