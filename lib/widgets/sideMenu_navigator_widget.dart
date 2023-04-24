@@ -1,8 +1,11 @@
 
 // ignore_for_file: library_private_types_in_public_api, unused_field
+import 'package:flix_cine/widgets/home_widget.dart';
 import 'package:flix_cine/widgets/search_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:shrink_sidemenu/shrink_sidemenu.dart';
+
+import '../views/welcome.dart';
 
 
 class MyHomePage extends StatefulWidget {
@@ -70,7 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return SideMenu(
       key: _endSideMenuKey,
       inverse: true,
-      background: const Color.fromARGB(255, 37, 37, 37), // end side menu
+      background: const Color.fromARGB(255, 77, 6, 90), // end side menu
       type: SideMenuType.slideNRotate,
       menu: Padding(
         padding: const EdgeInsets.only(left: 25.0),
@@ -118,31 +121,50 @@ class _MyHomePageState extends State<MyHomePage> {
                 selectedItemColor: Colors.purple,
                 onTap: _onItemTapped,
               ),
-            body: Column(
-              children: [
+            body: SingleChildScrollView(
+              child: Column(
+                children: [
                     Padding(
-                      padding: const EdgeInsets.only(top:25.0, left: 16.0, right: 16.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          
-                        const Search(),
-
-                        IconButton(onPressed:  () => toggleMenu(true),
-                        icon: const Icon(Icons.menu, size: 32.0, color: Colors.white,),
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        margin: const EdgeInsets.only(top:30.0),
+                        height: 60.0,
+                        decoration: BoxDecoration(
+                          color: const Color.fromARGB(255, 101, 6, 117),
+                          borderRadius: BorderRadius.circular(12.0)
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                
+                          const Padding(
+                            padding: EdgeInsets.only(
+                              left:10.0
+                              ),
+                            child: Search(),
+                          ),
+                                  
+                          Padding(
+                            padding: const EdgeInsets.only(right:10.0),
+                            child: IconButton(onPressed:  () => toggleMenu(true),
+                              icon: const Icon(Icons.menu, size: 32.0,color: Colors.white,),
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                ),
-              ],
+                                      ),
+                    ),
+                  
+                  const HomeWidget(),
+
+                ],
+              ),
             ),
           ),
         ),
       ),
     );
   }
-
-  
 
   Widget buildMenu() {
     return SingleChildScrollView(
@@ -155,17 +177,23 @@ class _MyHomePageState extends State<MyHomePage> {
             padding: const EdgeInsets.only(left: 16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                CircleAvatar(
-                  backgroundColor: Colors.white,
-                  radius: 22.0,
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(40.0),
+                  child: Image.asset(
+                    'assets/img/teste_img.jpg',
+                      fit: BoxFit.cover,
+                      height: 70.0,
+                   ),
                 ),
-                SizedBox(height: 16.0),
-                Text(
-                  "Hello, Ian Peres",
-                  style: TextStyle(color: Colors.white),
+                const SizedBox(height: 16.0),
+                const Text(
+                  "Olá, Ian Peres",
+                  style: TextStyle(color: Colors.white,
+                  fontSize: 18.0,
+                  ),
                 ),
-                SizedBox(height: 20.0),
+                const SizedBox(height: 20.0),
               ],
             ),
           ),
@@ -191,6 +219,17 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           ListTile(
             onTap: () {},
+            leading: const Icon(Icons.sunny,
+                size: 27.0, color: Colors.white),
+            title: const Text("Mudar Tema", style: TextStyle(
+              fontSize: 18.0
+            ),),
+            textColor: Colors.white,
+            dense: true,
+            // padding: EdgeInsets.zero,
+          ),
+          ListTile(
+            onTap: () {},
             leading: const Icon(Icons.insert_emoticon,
                 size: 27.0, color: Colors.white),
             title: const Text("Sobre nós", style: TextStyle(
@@ -202,7 +241,11 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
            ListTile(
             onTap: () {
-              Navigator.pop(context);
+              Navigator.push(context,
+                MaterialPageRoute(
+                  builder: (context) => const Welcome(),
+                ),
+              );
             },
             leading: const Icon(Icons.arrow_back,
                 size: 27.0, color: Colors.white),
