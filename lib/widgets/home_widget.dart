@@ -11,7 +11,7 @@ class HomeWidget extends StatelessWidget {
     return Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(left:15.0, bottom: 20.0),
+            padding: const EdgeInsets.only(left:15.0, bottom: 20.0, top: 15.0),
             child: Row(
               children: const [
                 Text('Home', style: TextStyle(
