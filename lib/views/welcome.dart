@@ -38,19 +38,17 @@ class Welcome extends StatelessWidget {
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              margin: const EdgeInsets.only(bottom: 20.0),
-              width: 320.0,
-              height: 370.0,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8.0),
-                color: const Color.fromARGB(232, 255, 255, 255),
+              width: 400.0,
+              height: 430.0,
+              decoration: const BoxDecoration(
+                color: Color.fromARGB(232, 255, 255, 255),
               ),
               child: Column(
                 children: [
                   const Padding(
-                    padding: EdgeInsets.all(8.0),
+                    padding: EdgeInsets.all(18.0),
                     child: Text('Login', style: TextStyle(
-                      fontSize: 25.0,
+                      fontSize: 32.0,
                       fontWeight: FontWeight.w800
                       ),
                     ),
