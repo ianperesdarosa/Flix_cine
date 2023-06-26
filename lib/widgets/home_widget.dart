@@ -8,12 +8,12 @@ class HomeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(left:15.0, bottom: 20.0, top: 15.0),
+            padding: EdgeInsets.only(left:15.0, bottom: 20.0, top: 15.0),
             child: Row(
-              children: const [
+              children: [
                 Text('Home', style: TextStyle(
                   color: Colors.white,
                   fontSize: 27.0,
@@ -26,7 +26,7 @@ class HomeWidget extends StatelessWidget {
         
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Padding(
               padding: EdgeInsets.only(
                 left:15.0,
